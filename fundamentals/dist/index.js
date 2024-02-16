@@ -17,4 +17,29 @@ function calculateTax(income, taxYear = 2022) {
     return income * 3;
 }
 calculateTax(10000);
+let employee = { id: 1 };
+employee.name = "Iris";
+let employee2 = {
+    id: 1,
+    name: "",
+    retire: (date) => {
+        console.log(date);
+    },
+};
+employee.name = "Iris";
+let employee3 = {
+    id: 1,
+    name: "",
+    retire: (date) => {
+        console.log(date);
+    },
+};
+function kgToLbs(weight) {
+    if (typeof weight === "number") {
+        return weight * 2.2;
+    }
+    else {
+        return parseInt(weight) * 2.2;
+    }
+}
 //# sourceMappingURL=index.js.map

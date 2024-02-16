@@ -77,3 +77,30 @@ let employee2: {
   },
 }; //make id readonly to avoid accidently modify
 employee.name = "Iris";
+
+// use type aliases to custom type
+
+type Employee = {
+  readonly id: number;
+  name: string;
+  retire: (date: Date) => void;
+};
+let employee3: Employee = {
+  id: 1,
+  name: "",
+  retire: (date: Date) => {
+    console.log(date);
+  },
+};
+
+// union types |
+function kgToLbs(weight: number | string): number {
+  // Narrowing
+  if (typeof weight === "number") {
+    // weight. get number methods
+    return weight * 2.2;
+  } else {
+    // weight. string methods
+    return parseInt(weight) * 2.2;
+  }
+}
