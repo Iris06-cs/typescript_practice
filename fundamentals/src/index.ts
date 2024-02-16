@@ -39,3 +39,23 @@ const enum Size { // with const keyword will generate more optimized code
 }
 let mySize: Size = Size.Medium;
 console.log(mySize);
+
+// best practice to properly annotate typescript function
+// turn "noUnusedParameters" on to avoid un-used parameters
+// function calculateTac(income: number) {
+//   //without specify return type, will not detect error when return undefined
+//   if (income < 50_000) return income * 2;
+//   //   if condition is false, javascript will return undefined by default
+// }
+// turn "noImplicitReturns" on to avoid return implicitly undefined
+// function calculateTax(income: number, taxYear: number): number {
+//   if (taxYear < 2023) return income * 2;
+//   return income * 3;
+// }
+// calculateTax(10_000, 2022, 1) valid in javascript, not in Typescript
+function calculateTax(income: number, taxYear = 2022): number {
+  if (taxYear < 2023) return income * 2;
+  return income * 3;
+}
+// define function with default value
+calculateTax(10_000);

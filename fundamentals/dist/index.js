@@ -11,4 +11,10 @@ let user = [1, "Iris"];
 console.log(typeof user);
 let mySize = 2;
 console.log(mySize);
+function calculateTax(income, taxYear = 2022) {
+    if (taxYear < 2023)
+        return income * 2;
+    return income * 3;
+}
+calculateTax(10000);
 //# sourceMappingURL=index.js.map
