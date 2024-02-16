@@ -59,3 +59,21 @@ function calculateTax(income: number, taxYear = 2022): number {
 }
 // define function with default value
 calculateTax(10_000);
+
+// TypeScript Objects
+// let employee = { id: 1 };
+// employee["name"] = "Iris";//not working in Typescript
+let employee: { id: number; name?: string } = { id: 1 };
+employee.name = "Iris";
+let employee2: {
+  readonly id: number;
+  name: string;
+  retire: (date: Date) => void;
+} = {
+  id: 1,
+  name: "",
+  retire: (date: Date) => {
+    console.log(date);
+  },
+}; //make id readonly to avoid accidently modify
+employee.name = "Iris";
