@@ -170,3 +170,20 @@ let log: any = null;
 console.log(log?.("a")); // return undefined
 log = (message: string) => message;
 console.log(log?.("a"));
+
+//nulllish coaelscing operator
+let speed: number | null = null;
+let ride = {
+  // Falsy(undefined, null, "", false, 0)
+  // speed: speed || 30 //if speed is falsy value then the default value will be 30
+  // if 0 is valid value, in js
+  //   speed: speed !== null ? speed:30
+  // ?? in Ts
+  speed: speed ?? 30, //if speed is not null or undefined, use that value,otherwise use 30
+};
+
+//type assertions
+let phone = document.getElementById("phone") as HTMLInputElement; //no type conversion, just to specify the type in detail so easier to get the property
+phone.value;
+// 2nd way
+let phone2 = <HTMLInputElement>document.getElementById("phone");
