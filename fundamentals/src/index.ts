@@ -116,3 +116,57 @@ let textBox: UIWidget = {
   drag: () => {},
   resize: () => {},
 };
+
+// Literal(exact, specific)
+type Quantity = 50 | 100;
+let quantity: Quantity = 100;
+
+type Metric = "cm" | "itch";
+
+// nullable types
+// null and undefined values are common source of problems
+// by default TypeScript is strict about null value
+function greet(name: string | null) {
+  if (name) console.log(name.toUpperCase());
+  else console.log("Hola!");
+}
+greet(null);
+
+// Optional Chaining
+// type Customer = {
+//   birthday: Date;
+// };
+// function getCustomer(id: number): Customer | null | undefined {
+//   return id === 0 ? null : { birthday: new Date() };
+// }
+// let customer = getCustomer(0);
+// // if (customer !== null && customer !== undefined) console.log(customer.birthday);
+// //  use optinal property access operator ?.
+// console.log(customer?.birthday); //will only excute when customer is not null or undefined
+// let customer1 = getCustomer(1);
+// console.log(customer1?.birthday);
+
+type Customer = {
+  birthday?: Date; //make this property optional
+};
+function getCustomer(id: number): Customer | null | undefined {
+  return id === 0 ? null : { birthday: new Date() };
+}
+let customer = getCustomer(0);
+// if (customer !== null && customer !== undefined) console.log(customer.birthday);
+//  use optinal property access operator ?.
+console.log(customer?.birthday); //will only excute when customer is not null or undefined
+let customer1 = getCustomer(1);
+console.log(customer1?.birthday?.getFullYear());
+
+// optional element access operator
+let arr: number[] = [];
+console.log(arr?.[0]);
+arr[0] = 1;
+console.log(arr?.[0]);
+
+// optional call
+let log: any = null;
+console.log(log?.("a")); // return undefined
+log = (message: string) => message;
+console.log(log?.("a"));
