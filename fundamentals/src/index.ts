@@ -187,3 +187,27 @@ let phone = document.getElementById("phone") as HTMLInputElement; //no type conv
 phone.value;
 // 2nd way
 let phone2 = <HTMLInputElement>document.getElementById("phone");
+
+// exercises
+// define type alias
+type User = {
+  name: String;
+  age: Number;
+  occupation?: string;
+};
+type Bird = {
+  fly: () => void;
+};
+type Fish = {
+  swim: () => void;
+};
+type Pet = Bird | Fish;
+
+type DayOfWeek =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday";
