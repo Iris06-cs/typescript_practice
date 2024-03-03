@@ -21,4 +21,6 @@ class Account {
 let account = new Account(1, "Iris", 0);
 account.deposit(100);
 console.log(account.balance);
+console.log(account);
+console.log(account instanceof Account);
 //# sourceMappingURL=index.js.map

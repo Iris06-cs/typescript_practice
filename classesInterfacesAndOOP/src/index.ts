@@ -22,7 +22,9 @@ class Account {
     this.balance -= amount;
   }
 }
-
+// create object
 let account = new Account(1, "Iris", 0);
 account.deposit(100);
 console.log(account.balance);
+console.log(account); //object
+console.log(account instanceof Account); //true
