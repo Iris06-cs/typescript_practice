@@ -28,15 +28,30 @@ class Account {
     }
     this._balance -= amount;
   }
-  getBalance(): number {
+  //   getBalance(): number {
+  //     return this._balance;
+  //   }
+  // use getter/setter
+  get balance(): number {
     return this._balance;
   }
 }
 // create object
 let account = new Account(1, "Iris", 0);
 account.deposit(100);
-console.log(account.getBalance());
+// console.log(account.getBalance());
+console.log(account.balance);
 console.log(account); //object
 console.log(account instanceof Account); //true
 
 // TypeScript access modifiers public private protected
+
+// using index signatures to create properties dynamically
+class SeatAssignment {
+  // seat number A1 A2...
+  // name
+  [seatNumber: string]: string;
+}
+let seats = new SeatAssignment();
+seats.A1 = "Iris";
+seats.A2 = "Jason";
