@@ -81,3 +81,31 @@ console.log(ride1.activeRides); //1
 console.log(ride2.activeRides); //1
 // activeRides belongs to each instance independently
 console.log(Ride.totalRides); //2
+
+// inheritance
+class Person {
+  constructor(public firstName: string, public lastName: string) {}
+  get fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+  walk() {
+    console.log("Walking");
+  }
+}
+class Student extends Person {
+  constructor(public studentId: number, firstName: string, lastName: string) {
+    super(firstName, lastName);
+  }
+  takeTest() {
+    console.log("Taking a test");
+  }
+}
+let student = new Student(1, "John", "Lee");
+class Teacher extends Person {
+  override get fullName() {
+    //set noImplicitOverride to true
+    return "Professor " + super.fullName;
+  }
+}
+let teacher = new Teacher("John", "Lee");
+console.log(teacher.fullName);
