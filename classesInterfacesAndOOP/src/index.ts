@@ -55,3 +55,29 @@ class SeatAssignment {
 let seats = new SeatAssignment();
 seats.A1 = "Iris";
 seats.A2 = "Jason";
+
+class Ride {
+  activeRides: number = 0;
+  private static _totalRides: number = 0;
+  start() {
+    this.activeRides++;
+    Ride._totalRides++;
+  }
+  stop() {
+    this.activeRides--;
+    Ride._totalRides--;
+  }
+  static get totalRides() {
+    return Ride._totalRides;
+  }
+}
+
+let ride1 = new Ride();
+ride1.start();
+
+let ride2 = new Ride();
+ride2.start();
+console.log(ride1.activeRides); //1
+console.log(ride2.activeRides); //1
+// activeRides belongs to each instance independently
+console.log(Ride.totalRides); //2
