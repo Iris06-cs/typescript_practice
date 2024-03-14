@@ -109,3 +109,12 @@ class Teacher extends Person {
 }
 let teacher = new Teacher("John", "Lee");
 console.log(teacher.fullName);
+
+// polymorphism
+function printNames(people: Person[]) {
+  for (let person of people) {
+    console.log(person.fullName);
+  }
+}
+printNames([new Student(1, "John", "Lee"), new Teacher("Mary", "Wang")]);
+// Classes should be open for extension and closed for modification(open closed principle)

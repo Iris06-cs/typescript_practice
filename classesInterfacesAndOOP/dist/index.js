@@ -84,4 +84,10 @@ class Teacher extends Person {
 }
 let teacher = new Teacher("John", "Lee");
 console.log(teacher.fullName);
+function printNames(people) {
+    for (let person of people) {
+        console.log(person.fullName);
+    }
+}
+printNames([new Student(1, "John", "Lee"), new Teacher("Mary", "Wang")]);
 //# sourceMappingURL=index.js.map
