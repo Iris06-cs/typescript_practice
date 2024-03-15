@@ -107,4 +107,15 @@ class Circle extends Shape {
         console.log("render a circle");
     }
 }
+class GoogleCalendar {
+    constructor(name) {
+        this.name = name;
+    }
+    addEvent() {
+        throw new Error("Method not implemented.");
+    }
+    removeEvent() {
+        throw new Error("Method not implemented.");
+    }
+}
 //# sourceMappingURL=index.js.map
