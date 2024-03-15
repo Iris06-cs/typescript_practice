@@ -88,8 +88,11 @@ class Person {
   get fullName() {
     return this.firstName + " " + this.lastName;
   }
-  walk() {
+  protected walk() {
     console.log("Walking");
+  }
+  working() {
+    console.log("working");
   }
 }
 class Student extends Person {
@@ -118,3 +121,20 @@ function printNames(people: Person[]) {
 }
 printNames([new Student(1, "John", "Lee"), new Teacher("Mary", "Wang")]);
 // Classes should be open for extension and closed for modification(open closed principle)
+
+// different between protected(can be inherited,not often used) and private members
+
+// abstract classes & methods
+abstract class Shape {
+  constructor(public color: string) {}
+  abstract render(): void; // render depends on shape, abstract method can only in abstract class
+}
+class Circle extends Shape {
+  constructor(public radius: number, color: string) {
+    super(color);
+  }
+  override render(): void {
+    console.log("render a circle");
+  }
+}
+// let shape = new Shape("red") // error, cannot create an instance of an abstract class

@@ -66,6 +66,9 @@ class Person {
     walk() {
         console.log("Walking");
     }
+    working() {
+        console.log("working");
+    }
 }
 class Student extends Person {
     constructor(studentId, firstName, lastName) {
@@ -90,4 +93,18 @@ function printNames(people) {
     }
 }
 printNames([new Student(1, "John", "Lee"), new Teacher("Mary", "Wang")]);
+class Shape {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Circle extends Shape {
+    constructor(radius, color) {
+        super(color);
+        this.radius = radius;
+    }
+    render() {
+        console.log("render a circle");
+    }
+}
 //# sourceMappingURL=index.js.map
