@@ -172,3 +172,9 @@ function wrapInArray<T>(value: T) {
   return [value];
 }
 let numbers = wrapInArray(1);
+
+// generic interface
+
+interface Resule<T> {
+  data: T | null;
+}
