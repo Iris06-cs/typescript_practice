@@ -161,3 +161,14 @@ class GoogleCalendar implements Calendar {
     throw new Error("Method not implemented.");
   }
 }
+// generic class
+
+class KeyValuePair<K, V> {
+  constructor(public key: K, public value: V) {}
+}
+let pair = new KeyValuePair<number, string>(1, "a");
+
+function wrapInArray<T>(value: T) {
+  return [value];
+}
+let numbers = wrapInArray(1);

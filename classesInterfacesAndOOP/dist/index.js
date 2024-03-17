@@ -118,4 +118,15 @@ class GoogleCalendar {
         throw new Error("Method not implemented.");
     }
 }
+class KeyValuePair {
+    constructor(key, value) {
+        this.key = key;
+        this.value = value;
+    }
+}
+let pair = new KeyValuePair(1, "a");
+function wrapInArray(value) {
+    return [value];
+}
+let numbers = wrapInArray(1);
 //# sourceMappingURL=index.js.map
