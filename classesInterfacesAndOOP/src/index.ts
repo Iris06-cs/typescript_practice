@@ -175,6 +175,32 @@ let numbers = wrapInArray(1);
 
 // generic interface
 
-interface Resule<T> {
+// http://mysite.com.users
+// http://mysite.com.products
+interface Result<T> {
   data: T | null;
+  error: string | null;
 }
+async function fetchUrl<T>(url: string): Promise<Result<T>> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      return { data: null, error: "Error fetching data" };
+    }
+    const data: T = await response.json();
+    return { data, error: null };
+  } catch (error) {
+    return {
+      data: null,
+      error: error instanceof Error ? error.message : "Unknown error",
+    };
+  }
+}
+interface User {
+  username: String;
+}
+
+interface Product {
+  title: string;
+}
+let result = fetchUrl<User>("url");
