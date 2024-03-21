@@ -200,7 +200,62 @@ interface User {
   username: String;
 }
 
-interface Product {
-  title: string;
-}
+// interface Product {
+//   title: string;
+// }
 let result = fetchUrl<User>("url");
+
+// Generic constraints (type,object shape,interface,class)
+
+// function echo<T extends number | string>(value: T): T {
+//   return value;
+// }
+// function echo<T extends { name: string }>(value: T): T {
+//   return value;
+// }
+interface Person {
+  name: string;
+}
+// class Person {
+//   constructor(public name:string){}
+// }
+function echo<T extends Person>(value: T): T {
+  return value;
+}
+
+// extending generic classes
+interface Product {
+  name: string;
+  price: number;
+}
+class Store<T> {
+  protected _objects: T[] = [];
+
+  add(obj: T): void {
+    this._objects.push(obj);
+  }
+}
+//pass on the generic type parameter
+class CompressibleStore<T> extends Store<T> {
+  compress(): void {
+    console.log("compressed");
+  }
+}
+let store = new CompressibleStore<Product>();
+
+store.add({ name: "product", price: 1 });
+store.compress();
+
+// Restrict the generic type parameter
+class SearchableStore<T extends { name: string }> extends Store<T> {
+  find(name: string): T | undefined {
+    return this._objects.find((obj) => obj.name === name);
+  }
+}
+// Fix the generic type parameter
+class ProductStore extends Store<Product> {
+  filterByCategory(category: string): Product[] {
+    if (category) return [];
+    return [];
+  }
+}
