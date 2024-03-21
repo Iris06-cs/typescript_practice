@@ -160,6 +160,10 @@ let result = fetchUrl("url");
 function echo(value) {
     return value;
 }
+let product = {
+    name: "a",
+    price: 1,
+};
 class Store {
     constructor() {
         this._objects = [];
@@ -167,7 +171,14 @@ class Store {
     add(obj) {
         this._objects.push(obj);
     }
+    find(property, value) {
+        return this._objects.find((obj) => obj[property] === value);
+    }
 }
+let store1 = new Store();
+store1.add({ name: "a", price: 1 });
+store1.find("name", "a");
+store1.find("price", 1);
 class CompressibleStore extends Store {
     compress() {
         console.log("compressed");
@@ -177,7 +188,7 @@ let store = new CompressibleStore();
 store.add({ name: "product", price: 1 });
 store.compress();
 class SearchableStore extends Store {
-    find(name) {
+    search(name) {
         return this._objects.find((obj) => obj.name === name);
     }
 }

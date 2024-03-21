@@ -228,13 +228,34 @@ interface Product {
   name: string;
   price: number;
 }
+//type mapping
+type ReadOnlyProduc = {
+  //index signature
+  //keyof
+  readonly [K in keyof Product]: Product[K];
+};
+let product: ReadOnlyProduc = {
+  name: "a",
+  price: 1,
+};
+//product property will be readyonly,avoid accidently change
+//typescript utility types doc
 class Store<T> {
   protected _objects: T[] = [];
 
   add(obj: T): void {
     this._objects.push(obj);
   }
+  //   use of keyof operator
+  find(property: keyof T, value: unknown): T | undefined {
+    return this._objects.find((obj) => obj[property] === value);
+  }
 }
+let store1 = new Store<Product>();
+store1.add({ name: "a", price: 1 });
+store1.find("name", "a");
+store1.find("price", 1);
+// store1.filter("nonExistingProperty",1)// property is not keyof Product, error
 //pass on the generic type parameter
 class CompressibleStore<T> extends Store<T> {
   compress(): void {
@@ -248,7 +269,7 @@ store.compress();
 
 // Restrict the generic type parameter
 class SearchableStore<T extends { name: string }> extends Store<T> {
-  find(name: string): T | undefined {
+  search(name: string): T | undefined {
     return this._objects.find((obj) => obj.name === name);
   }
 }
