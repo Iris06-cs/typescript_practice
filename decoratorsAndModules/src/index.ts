@@ -1,14 +1,37 @@
 // Decorators, often used in Angular/Vue, just a function called by the JavaScript runtime
 // set "experimentalDecorators": true
 
-function Component(constructor: Function) {
-  console.log("Component decorator called");
-  constructor.prototype.uniqueId = Date.now();
-  constructor.prototype.insertInDOM = () => {
-    console.log("Inserting the component in the DOM");
+// function Component(constructor: Function) {
+//   console.log("Component decorator called");
+//   constructor.prototype.uniqueId = Date.now();
+//   constructor.prototype.insertInDOM = () => {
+//     console.log("Inserting the component in the DOM");
+//   };
+// }
+
+//parameterized decorators
+//decorator factory
+type ComponentOptions = {
+  selector: string;
+};
+function Component(options: ComponentOptions) {
+  return (constructor: Function) => {
+    console.log("Component decorator called");
+    constructor.prototype.options = options;
+    constructor.prototype.uniqueId = Date.now();
+    constructor.prototype.insertInDOM = () => {
+      console.log("Inserting the component in the DOM");
+    };
   };
 }
-@Component
+function Pipe(constructor: Function) {
+  console.log("Pile decorator called");
+  constructor.prototype.pipe = true;
+}
+// @Component
+@Component({ selector: "#my-profile" })
+@Pipe
+//pipe decorator get called first and pass result to component decorator
 class ProfileComponent {}
 
 // or use class inherit
