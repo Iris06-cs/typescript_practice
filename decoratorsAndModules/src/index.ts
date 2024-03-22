@@ -49,9 +49,36 @@ function Log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     console.log("After");
   };
 }
+// class Person {
+//   @Log
+//   say(message: string) {
+//     console.log("Person says" + message);
+//   }
+// }
+
+// accessor decorators
+function Capitalize(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+) {
+  const original = descriptor.get;
+  descriptor.get = function () {
+    // if(original !==null && original !== undefined) original.call(this)
+    const result = original?.call(this);
+    // if(typeof result ==="string") return result.toUpperCase()
+    // return result
+    return typeof result === "string" ? result.toUpperCase() : result;
+  };
+}
+
 class Person {
-  @Log
-  say(message: string) {
-    console.log("Person says" + message);
+  constructor(public firstName: string, public lastName: string) {}
+
+  @Capitalize
+  get fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
   }
 }
+let person = new Person("iris", "0");
+console.log(person.fullName);
