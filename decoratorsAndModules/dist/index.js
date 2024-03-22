@@ -25,4 +25,20 @@ ProfileComponent = __decorate([
     Component({ selector: "#my-profile" }),
     Pipe
 ], ProfileComponent);
+function Log(target, propertyKey, descriptor) {
+    const original = descriptor.value;
+    descriptor.value = function (...args) {
+        console.log("Before");
+        original.call(this, ...args);
+        console.log("After");
+    };
+}
+class Person {
+    say(message) {
+        console.log("Person says" + message);
+    }
+}
+__decorate([
+    Log
+], Person.prototype, "say", null);
 //# sourceMappingURL=index.js.map
