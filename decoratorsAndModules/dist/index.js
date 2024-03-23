@@ -52,6 +52,40 @@ class Person {
 __decorate([
     Capitalize
 ], Person.prototype, "fullName", null);
-let person = new Person("iris", "wang");
+let person = new Person("iris", "0");
 console.log(person.fullName);
+function MinLength(length) {
+    return (target, propertyName) => {
+        let value;
+        const descriptor = {
+            get() {
+                return value;
+            },
+            set(newValue) {
+                if (newValue.length < length)
+                    throw new Error(`${propertyName} should be at least ${length} characters long.`);
+                value = newValue;
+            },
+        };
+        Object.defineProperty(target, propertyName, descriptor);
+    };
+}
+class User {
+    constructor(password) {
+        this.password = password;
+    }
+}
+__decorate([
+    MinLength(4)
+], User.prototype, "password", void 0);
+let user2 = new User("1234");
+console.log(user2.password);
+const PropDecorator = (...args) => {
+    console.log(args);
+};
+class Hd {
+}
+__decorate([
+    PropDecorator
+], Hd.prototype, "name", void 0);
 //# sourceMappingURL=index.js.map
