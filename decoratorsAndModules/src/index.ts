@@ -138,3 +138,20 @@ class Car {
   move(@Watch speed: number) {}
 }
 console.log(watchedParameters);
+
+//practice
+// create a decorator for adding a sauce to Pizza instance
+// all instances of the Pizza class should have a sauce property set to pesto
+function Sauce(sauce: string) {
+  return (constructor: Function) => {
+    console.log("Sauce decorator is called");
+    constructor.prototype.sauce = sauce;
+  };
+}
+@Sauce("pesto")
+class Pizza {
+  constructor(public name: string) {}
+  sauce?: string;
+}
+let pizza = new Pizza("mypizza");
+console.log(pizza.sauce);

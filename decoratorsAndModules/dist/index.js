@@ -105,4 +105,20 @@ __decorate([
     __param(0, Watch)
 ], Car.prototype, "move", null);
 console.log(watchedParameters);
+function Sauce(sauce) {
+    return (constructor) => {
+        console.log("Sauce decorator is called");
+        constructor.prototype.sauce = sauce;
+    };
+}
+let Pizza = class Pizza {
+    constructor(name) {
+        this.name = name;
+    }
+};
+Pizza = __decorate([
+    Sauce("pesto")
+], Pizza);
+let pizza = new Pizza("mypizza");
+console.log(pizza.sauce);
 //# sourceMappingURL=index.js.map
