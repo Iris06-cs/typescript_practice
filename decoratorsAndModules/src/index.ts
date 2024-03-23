@@ -123,3 +123,18 @@ class Hd {
   public name: string | undefined;
 }
 //parameter decorators
+type WatchedParameter = {
+  methodName: string;
+  parameterIndex: number;
+};
+const watchedParameters: WatchedParameter[] = [];
+const Watch = (target: any, methodName: string, parameterIndex: number) => {
+  watchedParameters.push({
+    methodName,
+    parameterIndex,
+  });
+};
+class Car {
+  move(@Watch speed: number) {}
+}
+console.log(watchedParameters);
